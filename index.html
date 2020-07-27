@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+        html, body {height: 100%;}
+        body {background-color: gainsboro; /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#9da79d+0,7d7d7d+100 */
+        background: #9da79d; /* Old browsers */
+        background: -moz-radial-gradient(center, ellipse cover, #9da79d 0%, #7d7d7d 100%); /* FF3.6-15 */
+        background: -webkit-radial-gradient(center, ellipse cover, #9da79d 0%,#7d7d7d 100%); /* Chrome10-25,Safari5.1-6 */
+        background: radial-gradient(ellipse at center, #9da79d 0%,#7d7d7d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9da79d', endColorstr='#7d7d7d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */}
+        .calculator {background-color: darkseagreen; 
+        width: 300px;
+        padding: 15px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 6px 0 #a1a1a1, 0 8px 10px rgba(0, 0, 0, 0.75);}
+        .result {
+            background-color: rgb(139, 153, 101);
+            color: #5b7e52;
+            width: 90%;
+            margin: 8px 0 20px 10px;
+            text-align: right;
+            height: 50px;
+            line-height: 50px;
+            font-size: 35px;
+            padding-right: 10px;
+            overflow: hidden;
+            font-family: serif;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.50) inset 0 2px 0 #a1a1a1;
+                }
+        ul {
+            padding:0%;
+            margin: 0%;
+        }
+        ul li {list-style: none;
+                background-color: #454545;
+                padding: 10px;
+                width: 15%;
+                float: left;
+                color: white;
+                margin: 2px;
+                cursor: pointer;
+                font-size: 20px;
+                text-align: center;
+                border-radius: 4px;
+                box-shadow: 0 3px 0 #5e5d5d, inset 0 2px 5px #5e5d5d;
+                font-family: 'Alice', serif;
+        }
+        ul li:active {
+             position: relative;
+             top: 5px;
+             box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .signature {color: white;
+                    font-family:'Alice', serif;
+                    font-size: -0.75rem;
+                    text-align: right;
+                    border: 5px;
+                    position: relative;
+                    z-index: -1;
+                    top: 11px;
+                    right: -7px;
+                    }
+        #equalto {
+            height: 70px;
+            line-height: 70px;
+        }
+        #zero {
+            margin-top: -45px;
+            width: 61%;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="result"> </div>
+        <ul>
+            <li>C</li>
+            <li>*</li>
+            <li>/</li>
+            <li>.</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>+</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>-</li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li id="equalto">=</li>
+            <li id="zero">0</li>
+        </ul>
+        <div class="signature">Just a little calculator by me</div>
+    </div>
+
+    <script>
+        const $lis = document.querySelectorAll("ul li")
+
+        $lis.forEach((node) => {
+            node.addEventListener('mousedown', function(event) {
+            const value = node.innerText.trim()
+            const $result = document.querySelector(".result")
+            const resultText = $result.innerText.trim()
+
+            if(resultText == '0' || resultText == 'Infinity' || resultText == 'undefined') {
+                $result.innerText = ' '
+            }
+            
+            if(value == '=') {
+                let solution = eval(resultText)
+                $result.innerText = solution
+                return true 
+            }
+
+            if(value.toLowerCase() =='c') {
+                $result.innerText = ' '
+                return true}
+            $result.append(value)
+            })
+
+        })
+    </script>
+</body>
+</html>
